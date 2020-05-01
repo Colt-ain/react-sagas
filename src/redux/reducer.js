@@ -6,7 +6,7 @@ import authReducer, { moduleName as authModule } from '../ducks/auth';
 const createRootReducer = (history) => combineReducers({
 	router: connectRouter(history),
 	form,
-	authModule: authReducer
+	[authModule]: authReducer
 });
 
 export default createRootReducer

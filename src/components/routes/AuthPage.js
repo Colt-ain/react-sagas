@@ -3,7 +3,8 @@ import SignInForm from '../Auth/SignInForm';
 import SignUpForm from '../Auth/SignUpForm';
 import { Route, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {signUp} from '../../ducks/auth';
+import { moduleName, signUp } from '../../ducks/auth';
+import Loader from '../common/Loader';
 
 class AuthPage extends Component {
 	handleSignIn = (values) => {
@@ -15,6 +16,8 @@ class AuthPage extends Component {
 	};
 
 	render() {
+		const { loading } = this.props;
+
 		return (
 			<div>
 				<h1>Auth Page</h1>
@@ -22,9 +25,14 @@ class AuthPage extends Component {
 				<NavLink to='/auth/signup' activeStyle={{ color: 'red' }}>SignUp</NavLink>
 				<Route path='/auth/signin' render={() => <SignInForm onSubmit={this.handleSignIn} />} />
 				<Route path='/auth/signup' render={() => <SignUpForm onSubmit={this.handleSignUp} />} />
+				{loading && <Loader loading={loading} />}
 			</div>
 		);
 	}
 }
 
-export default connect(null, { signUp })(AuthPage);
+const mapStateToProps = (state) => ({
+	loading: state[moduleName].loading
+});
+
+export default connect(mapStateToProps, { signUp })(AuthPage);
