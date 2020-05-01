@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-const appName = 'redux-sagas-d8af8';
+export const appName = 'redux-sagas-d8af8';
 
 export const firebaseConfig = {
 	apiKey: `AIzaSyAzqAWGMVk0KILvaudygZmRmyPDPt8lWVs`,
